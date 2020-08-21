@@ -41,9 +41,7 @@ import { Link } from 'react-router-dom';
                             <CardTitle> <h4>Comments</h4>
                             </CardTitle>
                             <CardText>
-                                <div className="comment">
                                 {my_comments}
-                                </div>
                                </CardText>
                         </CardBody>
                     </Card>
