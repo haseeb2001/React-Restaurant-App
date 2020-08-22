@@ -30,7 +30,7 @@ function About(props) {
 
     const leaders = props.leaders.map((leader) => {
         return (
-            <RenderLeader item={leader}/>
+            <RenderLeader key={leader.id} item={leader}/>
         );
     });
 
