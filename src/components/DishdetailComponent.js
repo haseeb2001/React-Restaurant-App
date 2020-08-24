@@ -28,8 +28,9 @@ class CommentForm extends Component{
       }
       handleComment(values) {
         this.toggleModal();
-        console.log('Current State is: ' + JSON.stringify(values));
-        alert('Current State is: ' + JSON.stringify(values));
+        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        // console.log('Current State is: ' + JSON.stringify(values));
+        // alert('Current State is: ' + JSON.stringify(values));
        // event.preventDefault();
 
     }
@@ -59,10 +60,10 @@ class CommentForm extends Component{
                                 </Col>
                         </Row>
                         <Row className="form-group">
-                        <Label htmlFor="yourname" md={6}>Your Name</Label>
+                        <Label htmlFor="author" md={6}>Your Name</Label>
                                 <Col md={10}>
-                                    <Control.text type="text" model=".yourname" id="yourname" 
-                                    name="yourname" placeholder="Your Name" className="form-control"
+                                    <Control.text type="text" model=".author" id="author" 
+                                    name="author" placeholder="Your Name" className="form-control"
                                     validators={{
                                         required, minLength: minLength(3), maxLength: maxLength(15)
                                     }}/>
@@ -70,7 +71,7 @@ class CommentForm extends Component{
                                    
                                    className="text-danger"
                                    show="touched"
-                                   model=".yourname"
+                                   model=".author"
                                    messages={{
                                     required: 'Required',
                                     minLength: 'Must be greater than 2 characters',
@@ -120,7 +121,7 @@ class CommentForm extends Component{
             );
     }
 
-    function RenderComments({comments}) {
+    function RenderComments({comments, addComment, dishId}) {
         
                 const my_comments=comments.map((comment)=>{
                     // const date= new Date(comment.date)
@@ -140,7 +141,8 @@ class CommentForm extends Component{
                             <ul className="list-unstyled">
                             {my_comments}
                             </ul>
-                            <CommentForm/>    
+                            <CommentForm
+                            dishId={dishId} addComment={addComment}/>    
                         </div>
                    
                 );
@@ -168,7 +170,10 @@ class CommentForm extends Component{
                         <RenderDish dish={props.dish} />
                     </div>
                     <div className="col-12 col-md-5 m-1">
-                        <RenderComments comments={props.comments} />
+                        <RenderComments comments={props.comments}
+                         addComment={props.addComment}
+                        dishId={props.dish.id}
+      />
                     </div>
                 </div>
                 </div>
