@@ -1,6 +1,7 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { baseUrl } from '../shared/baseUrl';
 
 var imgStyle = {
     maxWidth: "100px",
@@ -13,7 +14,7 @@ function RenderLeader ({item})
         
         <Media className="mt-3">
             <Media left>
-                <Media style={imgStyle} object src={item.image} alt={item.name}/>
+                <Media style={imgStyle} object src={baseUrl + item.image} alt={item.name}/>
             </Media>
             <Media body className="ml-4">
                 <Media heading>
