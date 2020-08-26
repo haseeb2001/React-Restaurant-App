@@ -14,7 +14,7 @@ function RenderLeader ({item})
         
         <Media className="mt-3">
             <Media left>
-                <Media style={imgStyle} object src={baseUrl + item.image} alt={item.name}/>
+                <Media style={imgStyle} object src={baseUrl + item.image} alt={item.name} />
             </Media>
             <Media body className="ml-4">
                 <Media heading>
