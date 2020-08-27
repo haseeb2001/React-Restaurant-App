@@ -2,6 +2,7 @@ import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { baseUrl } from '../shared/baseUrl';
+import {  Fade, Stagger } from 'react-animation-components';
 
 var imgStyle = {
     maxWidth: "100px",
@@ -11,7 +12,7 @@ function RenderLeader ({item})
 {         
 
     return(
-        
+        <Fade in>
         <Media className="mt-3">
             <Media left>
                 <Media style={imgStyle} object src={baseUrl + item.image} alt={item.name} />
@@ -24,14 +25,18 @@ function RenderLeader ({item})
                 <p>{item.description}</p>
             </Media>
         </Media>
+        </Fade>
         
         );
 }
 function About(props) {
-
+    
     const leaders = props.leaders.map((leader) => {
         return (
+            
+            <Stagger in key={leader.id}>
             <RenderLeader key={leader.id} item={leader}/>
+            </Stagger>
         );
     });
 
@@ -90,9 +95,11 @@ function About(props) {
                     <h2>Corporate Leadership</h2>
                 </div>
                 <div className="col-12">
+                
                     <Media list>
                         {leaders}
                     </Media>
+                    
                 </div>
             </div>
         </div>

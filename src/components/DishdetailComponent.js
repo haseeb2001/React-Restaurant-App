@@ -33,9 +33,7 @@ class CommentForm extends Component{
       handleComment(values) {
         this.toggleModal();
         this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
-        // console.log('Current State is: ' + JSON.stringify(values));
-        // alert('Current State is: ' + JSON.stringify(values));
-       // event.preventDefault();
+      
 
     }
       render()
@@ -140,16 +138,18 @@ class CommentForm extends Component{
                 const my_comments=comments.map((comment)=>{
                     // const date= new Date(comment.date)
                     return(
+                     <Stagger in key={comment.id}>
                         <Fade in>
                         <li key={comment.id} >
-                        <p >{comment.id} </p>
                             <p >{comment.comment} </p>
                             <p>--{comment.author}, 
                             {new Intl.DateTimeFormat('en-US', 
                             { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
 
-                        </li>   
+                        </li>
                         </Fade>
+                        </Stagger>   
+                        
                     );
                     
                 });
@@ -157,11 +157,10 @@ class CommentForm extends Component{
                         <div>
                             <h4>Comments</h4>
                             <ul className="list-unstyled">
-                            <Stagger in>
+                            
                             {my_comments}
                             <CommentForm
                             dishId={dishId} postComment={postComment}/>    
-                            </Stagger> 
                             </ul>
                               
                              
