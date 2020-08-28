@@ -2,10 +2,6 @@ import * as ActionTypes from './ActionTypes';
 import { baseUrl } from '../shared/baseUrl';
 
 
-export const addFeedback = (feedback ) => ({
-    type:ActionTypes.ADD_FEEDBACK,
-    payload: feedback
-});
 export const postFeedback=(firstname,lastname,telnum,email,agree,contactType,message)=>(dispatch)=>
 {
       const newFeedback={
